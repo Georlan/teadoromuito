@@ -80,6 +80,11 @@
         function sim() {
             // Exibe uma mensagem carinhosa
             alert("Eu gosto muito de você, nada é mentira, nunca foi um incômodo, não importa quantas vezes você diga que não nasceu ontem. ❤️");
+
+            // Após a mensagem ser fechada, começa a animação do coração
+            setTimeout(function() {
+                initHeart(); // Inicializa a animação do coração
+            }, 500); // Tempo de espera após o alert (em milissegundos)
         }
 
         function desvia(btn) {
