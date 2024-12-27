@@ -19,6 +19,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative; /* Para que o coração fique no fundo */
         }
 
         #conteudo {
@@ -26,6 +27,7 @@
             border-radius: 15px;
             padding: 20px 30px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* Garantir que o conteúdo fique sobre o fundo */
         }
 
         h2 {
@@ -58,7 +60,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1;
+            z-index: 0; /* Coloca o coração no fundo */
         }
     </style>
 </head>
@@ -66,7 +68,7 @@
 <body>
     <div id="conteudo">
         <h2>Me perdoa por ser tão chato às vezes?</h2>
-        <button class="btn" onclick="sim()">SIM</button>
+        <button class="btn" id="btn-sim" onclick="sim()">SIM</button>
         <button class="btn btn-nao" onclick="desvia(this)" onmouseover="desvia(this)">NÃO</button>
     </div>
 
@@ -78,8 +80,17 @@
 
     <script>
         function sim() {
-            // Exibe uma mensagem carinhosa
-            alert("Eu gosto muito de você, nada é mentira, nunca foi um incômodo, não importa quantas vezes você diga que não nasceu ontem.AAAAAAAAAAAAAAAAAAAAAAA");
+            // Remove os botões SIM e NÃO
+            document.getElementById('btn-sim').style.display = 'none';
+            document.querySelector('.btn-nao').style.display = 'none';
+
+            // Exibe a mensagem carinhosa
+            var mensagem = document.createElement('p');
+            mensagem.innerHTML = "Eu gosto muito de você, nada é mentira, nunca foi um incômodo, não importa quantas vezes você diga que não nasceu ontem.";
+            mensagem.style.fontSize = '1.5em';
+            mensagem.style.color = '#333';
+            mensagem.style.marginTop = '20px';
+            document.getElementById('conteudo').appendChild(mensagem);
 
             // Após a mensagem ser fechada, começa a animação do coração
             setTimeout(function() {
